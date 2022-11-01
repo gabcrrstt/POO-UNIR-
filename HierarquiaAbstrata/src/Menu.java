@@ -9,18 +9,17 @@ public class Menu {
 		String opcao,saida;
 	    char opte='0';
 	    int ihstrab;
-		double dsalario,ddesconto,dvalorHora;
+		double dsalario,ddesconto,dvalorHora, brutovend,taxaCom,bonus;
 		Assalariado a;
 		Horista h;
-		while (opte!='7'){
+		Comissionado c;
+		while (opte!='3'){
 			opcao= JOptionPane.showInputDialog(null,
 			   "\n1 - Insere um assalariado"+
 		       "\n2 - Insere um horista"+
 			   "\n3 - Insere um comissionado"+
 			   "\n4 - Exibe todos os empregados"+
-			   "\n5 - Exibe somente os assalariados"+
-			   "\n6 - Exibe somente os horistas"+
-			   "\n7 - Sair");
+			   "\n5 - Sair");
 			opte=opcao.charAt(0);
 			switch(opte){
 			case '1':nome = JOptionPane.showInputDialog(null,"Entre com o nome:");
@@ -34,6 +33,7 @@ public class Menu {
 			         saida=a.toString()+String.format("  Salario Mensalista: $%5.2f",a.calculaSalario());
 			         JOptionPane.showMessageDialog(null,saida);
 			         break;
+
 			case '2':nome = JOptionPane.showInputDialog(null,"Entre com o nome:");
 	                 nomedepto = JOptionPane.showInputDialog(null,"Entre com o depto:");
 	                 hstrab = JOptionPane.showInputDialog(null,"Entre com qtdade hs trabalhadas:");
@@ -44,31 +44,26 @@ public class Menu {
 			         lista.add(h);
 			         saida=h.toString()+String.format("  Salario Mensalista: $ %.2f",h.calculaSalario());
 			         JOptionPane.showMessageDialog(null,saida);
-			case '3': // trabalho
+
+			case '3': nome = JOptionPane.showInputDialog(null,"Entre com o nome:");
+	                 nomedepto = JOptionPane.showInputDialog(null,"Entre com o depto:");
+	                 brutovend = JOptionPane.showInputDialog(null,"Entre com o bruto das vendas");
+	                 taxaCom = JOptionPane.showInputDialog(null,"Entre com a taxa de  comissao");
+					 bonus = JOptionPane.showInputDialog(null,"Entre com o bonus");
+			         c = new Comissionado(nome,nomedepto,brutovend,taxaCom,bonus);
+			         lista.add(c);
+			         saida=c.toString()+String.format("  Salario Mensalista: $ %.2f",c.calculaSalario());
+			         JOptionPane.showMessageDialog(null,saida);
 				      break;
+
 			case '4': saida="\nExibe Todos Empregados\n";
 			          int i;
 		              for (i=0;i<lista.size();i++)
 		                    saida += lista.get(i).toString()+
 			               "  Salario:"+lista.get(i).calculaSalario()+"\n\n";
 		              JOptionPane.showMessageDialog(null, saida);
-		              break;
-		    case '5': saida="\nExibe somente Assalariados\n";
-                      for (Empregado emp:lista){
-              				if (emp instanceof Assalariado){
-                               saida += emp.toString()+
-	                            "  Salario $"+emp.calculaSalario()+"\n\n";}
-                      }
-                      JOptionPane.showMessageDialog(null, saida);
-                      break;  
-            case '6': saida="\nExibe somente Horistas\n";
-                      for (Empregado emp:lista){
-              				if (emp instanceof Horista){
-                               saida += emp.toString()+
-	                            "  Salario $:"+emp.calculaSalario()+"\n\n";}
-                      }
-                      JOptionPane.showMessageDialog(null, saida);
-                      break;           
+		              break; 
+
 			}//switch
 		}//while
 	}//main
