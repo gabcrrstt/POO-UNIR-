@@ -1,21 +1,29 @@
-package MeuPacote;
+
 	//Gabrielly Cristine A. Rodrigues
 public class Comissionado extends Empregado{
+
 	private double BrutoVendas;
 	private double TaxaComissao;
 	private double Bonus;
-public double calcularSalario() {
-	return(BrutoVendas * TaxaComissao);
-	
+
+
+	public Comissionado(String nome, String nomeDepto, double brutoVendas, double taxaComissao, double bonus) {
+		super(nome, nomeDepto);
+		BrutoVendas = brutoVendas;
+		TaxaComissao = taxaComissao;
+		Bonus = bonus;
 	}
-public Comissionado(String nome, String depto, double
-	brutoVendas, double taxaComissao, double bonus) {
-	
-	super(nome, depto);
-	BrutoVendas = brutoVendas;
-	TaxaComissao = taxaComissao;
-	Bonus = bonus;
+
+	public Comissionado(){
+
 	}
+
+	@Override
+	public double calculaSalario() {
+		return(BrutoVendas * TaxaComissao *Bonus);
+		
+	}
+
 	public double getBrutoVendas() {
 	return BrutoVendas;
 	}
@@ -36,8 +44,7 @@ public Comissionado(String nome, String depto, double
 	}
 	
 	public String toString() {
-	return "Comissionado [ " +super.toString() + "BrutoVendas=
-	"+ BrutoVendas + ", TaxaComissao=" + TaxaComissao + ", Bonus=" + Bonus
+	return "Comissionado [ " +super.toString() + "BrutoVendas="+ BrutoVendas + ", TaxaComissao=" + TaxaComissao + ", Bonus=" + Bonus
 	+ "]";
 	
 	}

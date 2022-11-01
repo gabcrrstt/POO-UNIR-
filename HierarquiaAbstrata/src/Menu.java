@@ -5,11 +5,11 @@ public class Menu {
 	public static void main(String[] args) {
 		ArrayList <Empregado> lista = new ArrayList <Empregado>();
 		String nome, nomedepto, salmensal,desconto;
-		String hstrab,valorHora;
+		String hstrab,valorHora,brutovend,taxaCom,bonus;;
 		String opcao,saida;
 	    char opte='0';
 	    int ihstrab;
-		double dsalario,ddesconto,dvalorHora, brutovend,taxaCom,bonus;
+		double dsalario,ddesconto,dvalorHora, dbrutovend,dtaxaCom,dbonus;
 		Assalariado a;
 		Horista h;
 		Comissionado c;
@@ -47,10 +47,13 @@ public class Menu {
 
 			case '3': nome = JOptionPane.showInputDialog(null,"Entre com o nome:");
 	                 nomedepto = JOptionPane.showInputDialog(null,"Entre com o depto:");
-	                 brutovend = JOptionPane.showInputDialog(null,"Entre com o bruto das vendas");
-	                 taxaCom = JOptionPane.showInputDialog(null,"Entre com a taxa de  comissao");
-					 bonus = JOptionPane.showInputDialog(null,"Entre com o bonus");
-			         c = new Comissionado(nome,nomedepto,brutovend,taxaCom,bonus);
+					 brutovend = JOptionPane.showInputDialog(null,"Entre com o bruto:");
+	                 dbrutovend = Double.parseDouble(brutovend);
+					 taxaCom= JOptionPane.showInputDialog(null,"Entre com a taxa:");
+	                 dtaxaCom =Double.parseDouble(taxaCom);
+					 bonus=JOptionPane.showInputDialog(null,"Entre com o bonus:");
+					 dbonus = Double.parseDouble(bonus);
+			         c = new Comissionado(nome,nomedepto,dbrutovend,dtaxaCom,dbonus);
 			         lista.add(c);
 			         saida=c.toString()+String.format("  Salario Mensalista: $ %.2f",c.calculaSalario());
 			         JOptionPane.showMessageDialog(null,saida);
